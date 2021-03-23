@@ -98,8 +98,10 @@ const driversReducer = (state = initialState, action: DriverDispatchTypes): IDef
     case DRIVERS_LIST_FILTER_SUCCESS: {
       const { payload } = action;
       if (payload) {
-        const filteredDrivers = Object.values(state.driversBackup).filter((value) =>
-          value.lastName.startsWith(payload.toLowerCase()),
+        const filteredDrivers = Object.values(state.driversBackup).filter(
+          (value) =>
+            value.lastName.includes(payload.toLowerCase()) ||
+            value.firstName.includes(payload.toLowerCase()),
         );
 
         if (filteredDrivers?.length) {
