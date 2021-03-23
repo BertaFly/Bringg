@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useCallback } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Table, Loader } from 'semantic-ui-react';
 import { getFullName } from '../../helpers/stringHelpers';
@@ -18,7 +18,7 @@ export const TasksList: React.FC = () => {
     dispatch(GetTasks());
   }, []);
 
-  const gerDriverOptions = useCallback(() => {
+  const driverOptions = useMemo(() => {
     return [
       { value: undefined, text: 'Unassigned' },
       ...driversState.allIds.map((driverId) => {
@@ -27,7 +27,6 @@ export const TasksList: React.FC = () => {
       }),
     ];
   }, [driversState.allIds]);
-  const driverOptions = gerDriverOptions();
 
   const handleAssignTask = (driverId: IOption['value'], taskId: ITask['id']) => {
     dispatch(UpdateTask(taskId, driverId ? driversState.byIds[driverId] : (driverId as undefined)));

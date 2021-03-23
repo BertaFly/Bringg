@@ -152,7 +152,6 @@ const driversReducer = (state = initialState, action: DriverDispatchTypes): IDef
 
       return {
         ...state,
-        isFiltered: false,
         loading: false,
         allIds: newAllIds,
         byIds: newByIds,
